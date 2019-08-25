@@ -38,6 +38,8 @@ def update_db(new_number_of_products, new_total_price, new_products, order_id):
 	sql_query = "UPDATE orders SET number_of_products = %s, total_price = %s WHERE order_id = %s"
 	cur.execute(sql_query, (new_number_of_products, new_total_price, order_id))
 	update_order_details(cur, new_products, order_id)
+	if cur.rowcount < 1:
+		raise Exception('Sorry, failed to update order.')
 	cur.close()
 
 
@@ -46,8 +48,6 @@ def update_order_details(cur, new_products, order_id):
 	for product_id in new_products:
 		cur.execute(sql_query, (product_id, order_id))
 		mysql.connection.commit()
-	if cur.rowcount < 1:
-		raise Exception('Sorry, failed to update order.')
 
 
 def delete_from_db(order_id):
@@ -55,7 +55,6 @@ def delete_from_db(order_id):
 	sql_query = "DELETE orders, order_products FROM orders INNER JOIN order_products ON orders.order_id = order_products.order_id WHERE orders.order_id= %s"
 	cur.execute(sql_query, (order_id,))
 	mysql.connection.commit()
-	cur.close()
 	if cur.rowcount < 1:
 		raise Exception('Sorry, failed to delete order.')
-
+	cur.close()
