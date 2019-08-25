@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a sample documentation for the API task located at github: ",
+    "version": "0.0.1",
+    "title": "Order Flow API",
+    "contact": {
+      "email": "ksenia15grv@gmail.com"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "produces": ["application/json"],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "tags": ["Orders"],
+        "description": "Get list of orders from database",
+        "responses": {
+              "200": {
+                "description": "Successfully got orders",
+                "schema": {
+                      "type": "object",
+                      "items": {}
+                }
+              }
+        }
+      },
+      "post": {
+        "tags": ["Orders"],
+        "description": "Creates a new order in database",
+        "responses": {
+              "200": {
+                "description": "Successfully created order.",
+                "schema": {
+                      "type": "object",
+                      "items": {}
+                }
+              }
+        }
+      },
+      "put": {
+        "tags": ["Orders"],
+        "description": "Updates already existing order in database",
+        "requestBody": {
+          "required": "true",
+          "content":
+        }
+      }
+      }
+    }
+  }
+}

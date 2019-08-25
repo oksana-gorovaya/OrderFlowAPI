@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: Order FLow API
+  description: Feel free to find this API at github.
+  version: 0.1.9
+servers:
+  - url: http://127.0.0.1:5000
+paths:
+  /orders:
+    get:
+      summary: Returns a list of orders.
+      responses:
+        '200':
+          description: A JSON array of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      summary: Creates an order.
+      requestBody:
+        required: true
+        content:
+          form-data:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+      responses:
+        '200':
+          description: Ok
+    put:
+      summary: Modifies an existing order.
+      requestBody:
+        required: true
+        content:
+          form-data:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                product_id:
+                  type: string
+      responses:
+        '200':
+          description: ok
